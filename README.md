@@ -7,8 +7,8 @@ This script contains several steps for CNV priorization after gGATK-CNVs pipelin
 
 The first step involves: 
   * Identifying and remvoing Common CNVs in the VCF output of the pipeline (with cnv-filter.sh)
-  *  After Common CNVs filtering,each CNV interval is extended by 50% length at each side (objetive is merged close segments split by GATK's Viterby algorithm)
-  *  The segments that overlapped, after the extension, are merged using bedtools merge tool
-  *  Then, a dynamic QS is defined based on Copy Number (CN) and Number of Exons (NP) for each CNV
-  *  If the estimated CNV QS is lower that defined threshold for each condition, the CNV is filtered out, just keeping high-quality CNVs for further analysis.
+  *  After Common CNVs filtering, each CNV interval is extended by 50% length at both sides (objetive is merge close segments that were split by GATK's Viterby algorithm)
+  *  Overlapping segments, after the extension, are merged using bedtools merge tool.
+  *  Then, a dynamic QS is defined based on the Copy Number (CN) and Number of Exons (NP) for each CNV. If the estimated QS is lower than the defined threshold
+    for each condition, the CNV is filtered out, just keeping high-quality CNVs for further analysis.
     
