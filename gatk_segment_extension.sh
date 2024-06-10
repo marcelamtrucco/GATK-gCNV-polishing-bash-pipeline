@@ -15,6 +15,8 @@ mergedfiles=${extended_segments}/mergedfiles
 qsmergedfiles=${mergedfiles}/qsmergedfiles
 cnvsqsfiltered=${qsmergedfiles}/cnvsqsfiltered
 
+# Each CNV interval is extended by 50% length at each side:
+
 if [ ! $(ls -A ${extended_segments}) ];then
 for file in ${unique_cnvs}/*.bed;do
 	cat $file|awk 'var=0.5*($3-$2){printf $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"8"\t"}{printf "%.0f\n", var}'| \
@@ -39,7 +41,7 @@ for file in ${mergedfiles}/*_merged.bed;do
         sort -nk1,1 -nk2,2|sed 's/^/chr/g'|cut -f1,2,3,7,8,10,11,12 > ${qsmergedfiles}/$(basename $file _merged.bed)_qsmerged.bed;
 done
 
-# In this step, a dynamic QS is defined based on CN and NP for each CNV.Files are saved in cnvfiltered directory. 
+# In this step, a dynamic Quality Score (QS) is defined based on Copy Number and Number of Exons for each CNV.Files are saved in cnvfiltered directory. 
 #conda activate pipeline
 
 for file in ${qsmergedfiles}/*_qsmerged.bed;do
