@@ -17,7 +17,7 @@ newfiles= ${output_dir}/newfiles
 unique_cnvs=${newfiles}/unique_cnvs
 
 # gGATK-CNV output are VCF segment files (zcat genotyped-segments-case-sample_0.vcf), one per sample, 
-# saved in case-results directory. The fiel is edited as follows,generating _type.bed files in the newfiles folder.
+# saved in case-results directory. The file is edited as follows,generating _type.bed files in the newfiles folder.
 
 if [ ! $(ls -A ${newfiles} ];then
 	for file in ${case-results}/*;do
@@ -44,7 +44,7 @@ for file in ${newfiles}/*_type.bed;do
 done
 
 # 2) Variant filtering:
-# this script concatenate the fields: chr/start/end/cnv_type in intervals with '@', then identical concatenated intervals 
+# this script concatenates the fields: chr/start/end/cnv_type in intervals with '@', then identical concatenated intervals 
 # are sorted and counted. Counts greater than 3 are removed,keeping unfrequent CNVs,saved as unique_cnvs.bed
 
 if [ ! -f  ${newfiles}/unique_cnvs.bed ];then
